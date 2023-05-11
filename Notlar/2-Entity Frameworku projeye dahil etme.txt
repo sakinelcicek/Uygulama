@@ -1,0 +1,54 @@
+Terminali açın Ve Sırasıyla paketleri yükleyin
+1- dotnet add package Microsoft.EntityFrameworkCore -v 7.0.0
+2- dotnet add package Microsoft.EntityFrameworkCore.Tools -v 7.0.0
+3- dotnet add package Microsoft.EntityFrameworkCore.SqlServer --version 7.0.0
+4-Db context sınıfımız oluşturalım
+using Microsoft.EntityFrameworkCore;
+
+namespace ders2.Models {
+    public class ShopContext : DbContext {
+        public ShopContext() { }
+        public ShopContext(DbContextOptions<ShopContext> options) : base (options) { }
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            optionsBuilder.UseSqlServer("Server=LAB5_OGRT\\SQLEXPRESS01;Database=ShopDB;User Id=sa;Password=123;");
+        }
+
+        public DbSet<Product> Products { get; set; }
+
+    } 
+}
+  5-Program.cs ye ekle
+builder.Services.AddDbContext<ShopContext>();
+(İlk satıra using MagazaWeb.Models; eklenecek)
+
+6-ProductController controllerimiza gidip ,
+private readonly ShopContext context;
+        public ProductsController(ShopContext context )
+        {
+                this.context=context;
+        }
+
+        eklenir.
+7- Migration oluşturulur.
+dotnet ef migrations add mig1(mig1 adını kendimiz belirledik)
+eğer migrations çalışmaz hata verirse önce:
+.NET 7
+
+dotnet tool install --global dotnet-ef
+.NET 6
+
+dotnet tool install --global dotnet-ef --version 6.*
+.NET 5
+
+dotnet tool install --global dotnet-ef --version 5.*
+.NET Core 3
+
+dotnet tool install --global dotnet-ef --version 3.*
+ .net sürümüne göre bu paketi yüklüyoruz.
+ 8- veritabanı güncellenir.
+ dotnet ef database update
+ 9- sertiifika hatası alırsak Context sınıfımızdki connection stringe 
+ https://stackoverflow.com/questions/34430550/a-connection-was-successfully-established-with-the-server-but-then-an-error-occ
+ TrustServerCertificate=True eklenir.

@@ -1,0 +1,32 @@
+@* @using ders2.Controllers *@
+@{
+    ViewData["Title"] = "Product List.";
+    Layout="_Layout2";
+}
+@model List<ders2.Controllers.Urun>;
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">#ID</th>
+      <th scope="col">Ürün Adı</th>
+      <th scope="col">Stok Adedi</th>
+    </tr>
+  </thead>
+  <tbody>
+    @foreach (var urun in Model)
+    {
+    <tr>
+      <th scope="row">@urun.ID</th>
+      <td>@urun.urunAd</td>
+      <td>@urun.stokAdedi</td>
+      <td>
+        <button class="btn btn-danger">Sil</button>
+        <button class="btn btn-success">Güncelle</button>
+      </td>
+    </tr>
+    }
+    
+    
+  </tbody>
+</table>
+<partial name="_DenemePartial" />

@@ -1,0 +1,19 @@
+@{
+    ViewData["Title"] = "CategoryAdd";
+}
+@model Category
+<div class="container mt-3">
+    <h2>Kategori Ekle</h2>
+  <form class="form-horizontal" asp-controller="Category" asp-action="Add" method="post">
+  <div class="mb-3 mt-3">
+    <label class="form-label" for="Name">Kategori Adı:</label>
+    <input type="text" class="form-control"  placeholder="Kategori adını giriniz." asp-for="CategoryName">
+  </div>
+  <div class="mb-3">
+    <label for="Price" class="form-label">Kateogi Açıklaması:</label>
+    <input type="text" class="form-control"  placeholder="Kategori açıklamasını giriniz." asp-for="Description">
+  </div>
+
+  <button type="submit" class="btn btn-primary">Kategori Ekle</button>
+</form>
+</div>

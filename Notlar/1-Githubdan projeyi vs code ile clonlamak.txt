@@ -1,0 +1,6 @@
+Vs code aç
+Open folder masasütü seç
+Terminal aç (Terminal - new terminal)
+Alttaki komut çalıştır:
+git clone https://github.com/sakinelcicek/ders2
+Open folder ders2 seç

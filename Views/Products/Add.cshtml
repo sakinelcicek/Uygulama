@@ -1,0 +1,53 @@
+@{
+  ViewData["Title"] = "Add";
+}
+@model Product
+<div class="container mt-3">
+  <h2>Ürün Ekle</h2>
+  <form class="form-horizontal" asp-controller="Products" asp-action="Add" method="post">
+    <div class="mb-3 mt-3">
+      <label class="form-label" asp-for="Name">Ürün Adı:</label>
+      <input class="form-control" placeholder="Ürün adını giriniz." asp-for="Name">
+    </div>
+
+    <div class="mb-3">
+      <label asp-for="Price" class="form-label">Ürün Fiyatı:</label>
+      <input class="form-control" placeholder="Ürün Fiyatı" asp-for="Price">
+    </div>
+
+    <div class="mb-3">
+      <label asp-for="Stock" class="form-label">Ürün Stok:</label>
+      <input type="text" class="form-control" placeholder="Ürün stok" asp-for="Stock">
+    </div>
+
+    <div class="mb-3">
+      <label asp-for="Stock" class="form-label">Ürün Rengi:</label>
+      <input type="text" class="form-control" placeholder="Ürün Rengini seöi" asp-for="Stock">
+    </div>
+    <div class="form-check mb-3">
+      <input class="form-check-input" asp-for="isPuslish">
+      <label class="form-check-label" for="isPuslish">
+        Ürün Yayınlansın mı?
+      </label>
+    </div>
+
+    <label class="form-label badge bg-primary fs-5">
+      Ürün Yayın süresini seçiniz!
+    </label>
+    @foreach (var ay in ViewBag.Expire as Dictionary<string, int>)
+    {
+      <div class="form-check mb-1">
+        <input class="form-check-input" type="radio" id="@(ay.Value)r" asp-for="ExpireDate" value="@ay.Value">
+        <label class="form-check-label" for="@(ay.Value)r" asp-for="ExpireDate">
+          @ay.Key
+        </label>
+      </div>
+    }
+    <div class="form-floating">
+      <textarea class="form-control" placeholder="Ürün Açıklamasını giriniz." asp-for="Description"></textarea>
+      <label for="floatingTextarea" asp-for="Description">Ürün Açıklamasını giriniz.</label>
+    </div>
+
+    <button type="submit" class="btn btn-success mt-3">Ürün Ekle</button>
+  </form>
+</div>

@@ -1,0 +1,22 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <partial name="_HeadPartial" />
+     @await RenderSectionAsync("SayfaCss", required: false)
+</head>
+<body>
+     <partial name="_navPartial" />
+      @await RenderSectionAsync("Ornek", required: false)
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div> 
+    
+    <partial name="_FooterPartial" />
+    <partial name="_ScriptsPartial" />
+   @await RenderSectionAsync("Scripts", required: false)
+</body>
+
+</html>

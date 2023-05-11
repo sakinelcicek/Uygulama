@@ -1,0 +1,39 @@
+1-İndirilen proje adının aynısıyla boş bir proje oluşturulur.
+2-Var olan(7.sürüm) projenin contoller views ve model klasörleri yeni projeye aktarılır.
+3- 5-Program.cs ye ekle
+builder.Services.AddDbContext<ShopContext>();
+(İlk satıra using MagazaWeb.Models; eklenecek)
+
+6-ProductController controllerimiza gidip ,
+private readonly ShopContext context;
+        public ProductsController(ShopContext context )
+        {
+                this.context=context;
+        }
+
+        eklenir.
+4-Terminali açın Ve Sırasıyla paketleri yükleyin
+1- dotnet add package Microsoft.EntityFrameworkCore -v 6.0.0
+2- dotnet add package Microsoft.EntityFrameworkCore.Tools -v 6.0.0
+3- dotnet add package Microsoft.EntityFrameworkCore.SqlServer --version 6.0.0
+5-- Migration oluşturulur.
+dotnet ef migrations add mig1(mig1 adını kendimiz belirledik)
+eğer migrations çalışmaz hata verirse önce:
+.NET 7
+
+dotnet tool install --global dotnet-ef
+.NET 6
+
+dotnet tool install --global dotnet-ef --version 6.*
+.NET 5
+
+dotnet tool install --global dotnet-ef --version 5.*
+.NET Core 3
+
+dotnet tool install --global dotnet-ef --version 3.*
+ .net sürümüne göre bu paketi yüklüyoruz.
+ b- veritabanı güncellenir.
+ dotnet ef database update
+c- sertiifika hatası alırsak Context sınıfımızdki connection stringe 
+ https://stackoverflow.com/questions/34430550/a-connection-was-successfully-established-with-the-server-but-then-an-error-occ
+ TrustServerCertificate=True eklenir.
